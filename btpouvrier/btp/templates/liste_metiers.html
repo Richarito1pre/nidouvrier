@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Liste des métiers</title>
+    <style>
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f1f1f1;
+        border-radius: 5px;
+      }
+
+      h1 {
+        text-align: center;
+      }
+
+      .columns {
+        display: flex;
+        overflow-x: scroll; /* Barre de défilement horizontale pour les colonnes */
+      }
+
+      .column {
+        flex: 1;
+      }
+
+      .column ul {
+        height: 80px; /* Hauteur pour afficher les 4 premières lignes */
+      }
+
+      ul {
+        list-style-type: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      li {
+        margin-bottom: 5px;
+      }
+
+      .selected {
+        font-weight: bold;
+        color: #005eff;
+      }
+
+      button {
+        display: block;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Liste des métiers</h1>
+      <form method="POST" action="{% url 'liste_metiers' %}">
+        {% csrf_token %}
+        <div class="columns">
+          <div class="column">
+            <ul class="scrollable-list">
+              {% for metier in metiers %}
+              <li>
+                <input
+                  type="checkbox"
+                  name="selected_ids[]"
+                  value="{{ metier.id }}"
+                  onclick="toggleValuePrompt(this)"
+                />{{ metier.nom }}
+                <input
+                  type="number"
+                  name="valeur_{{ metier.id }}"
+                  min="1"
+                  max="100"
+                />
+              </li>
+              {% endfor %}
+            </ul>
+          </div>
+        </div>
+        <button type="submit">Enregistrer</button>
+      </form>
+    </div>
+
+    <script>
+      function toggleValuePrompt(checkbox) {
+        if (checkbox.checked) {
+          var value = prompt(
+            "Assigner une valeur entre 1 et 100 à l'élément '" +
+              checkbox.parentNode.textContent.trim() +
+              "' :"
+          );
+          if (
+            value !== null &&
+            value !== "" &&
+            !isNaN(value) &&
+            Number(value) >= 1 &&
+            Number(value) <= 100
+          ) {
+            checkbox.setAttribute("data-value", value);
+            checkbox.parentNode.classList.add("selected");
+          } else {
+            checkbox.checked = false;
+            alert("Veuillez entrer une valeur valide entre 1 et 100.");
+          }
+        } else {
+          checkbox.removeAttribute("data-value");
+          checkbox.parentNode.classList.remove("selected");
+        }
+      }
+    </script>
+  </body>
+</html>

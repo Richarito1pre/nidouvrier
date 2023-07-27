@@ -1,0 +1,89 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Login</title>
+
+    <!-- Bootstrap core CSS -->
+    <link
+      href="{% static 'assets/dist/css/bootstrap.min.css' %}"
+      rel="stylesheet"
+    />
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'assets/signup.css' %}" rel="stylesheet" />
+  </head>
+  <body class="text-center">
+    <main class="form-signin">
+      <form method="POST">
+        {% csrf_token %}
+        <h1 class="h3 mb-4 fw-normal">Veuillez vous connecter</h1>
+        <div>
+          <style>
+            h5 {
+              color: red;
+            }
+          </style>
+          {%for message in messages%}
+          <h5>{{message}}</h5>
+          {%endfor%}
+        </div>
+
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            placeholder="john smith"
+            name="username"
+          />
+          <label for="floatingInput">Nom</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="password"
+            class="form-control"
+            id="floatingPassword"
+            placeholder="Password"
+            name="password"
+          />
+          <label for="floatingPassword">Password</label>
+        </div>
+        <div class="form-floating mb-5">
+          <button class="w-100 btn btn-lg btn-primary postuler" type="submit">
+            Se connecter
+          </button>
+        </div>
+
+        <a href="{%  url 'signup'%}">s'inscrire</a>
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+          <p class="mb-1">&copy; 2023 Coin d'ouvriers</p>
+          <ul class="list-inline">
+            <li class="list-inline-item"><a href="#">Confidentialité</a></li>
+            <li class="list-inline-item"><a href="#">Utilisation</a></li>
+            <li class="list-inline-item"><a href="#">A propos</a></li>
+          </ul>
+        </footer>
+      </form>
+    </main>
+  </body>
+</html>

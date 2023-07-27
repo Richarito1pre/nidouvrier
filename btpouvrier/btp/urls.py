@@ -1,0 +1,40 @@
+from django.urls import path
+from . import views
+from .views import liked_posts,liked_users,ouvrier_detail
+urlpatterns = [
+    path('', views.index, name='index'),
+    path('upload/', views.upload, name='upload'),
+    path('home/', views.home, name='home'),
+    path('ouvrier/', views.ouvrier, name='ouvrier'),
+    path('ouvrier_detail/<str:username>/', views.ouvrier_detail, name='ouvrier_detail'),
+    path('liste_ouvriers/', views.liste_ouvriers, name='liste_ouvriers'),
+    path('addanonce/', views.addanonce, name='addanonce'),
+    path('settings/', views.settings, name='settings'),
+    #path('upload', views.upload, name='upload'),
+    #path('follow', views.follow, name='follow'),
+    path('search/', views.search, name='search'),
+    path('mesanonces/', views.mesanonces, name='mesanonces'),
+    path('ouvriers/', views.ouvriers, name='ouvriers'),
+    path('post/<uuid:post_id>/ouvriers_detail/', views.ouvriers_detail, name='ouvriers_detail'),
+    #path('favoris/<str:pk>', views.favoris, name='favoris'),
+    path('profile/<str:pk>', views.profile, name='profile'),
+    path('like-post', views.like_post, name='like-post'),
+    path('signup/', views.signup, name='signup'),
+    path('signin/', views.signin, name='signin'),
+    path('logout/', views.logout, name='logout'),
+    path('base/', views.base, name='base'),
+    path('liste_metiers/', views.liste_metiers, name='liste_metiers'),
+    path('delete_like/<uuid:post_id>/', views.delete_like, name='delete_like'),
+    path('acceuil/', views.acceuil, name='acceuil'),
+    path('connexion/', views.connexion, name='connexion'),
+    path('compte/', views.compte, name='compte'),
+    path('inscrip/', views.inscrip, name='inscrip'),
+    #path('liked_posts/<str:username>/', liked_posts, name='liked_posts'),
+    path('post/<uuid:post_id>/liked_users/', liked_users, name='liked_users'),
+    path('liked_posts/', liked_posts, name='liked_posts'),
+    path('liked_posts/<str:username>/', views.liked_posts, name='liked_posts'),
+    path('post/<uuid:post_id>/delete/', views.delete_post, name='delete_post'),
+    path('edit_annonce/<uuid:post_id>/', views.edit_annonce, name='edit_annonce'),
+]
+
+

@@ -1,0 +1,87 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<style>
+  .mega {
+    width: 30px;
+  }
+  .inf,h6{
+    font-weight: bold;
+  }
+</style>
+<section class="annonce">
+  <div class="container my-6 annonce ma">
+    <div class="row">
+      {% for post in user_posts reversed %}
+      <div class="col-md-4 mb-3 carte card h-100 position-relative">
+        <div class="card h-100">
+          <div class="row no-gutters align-items-center">
+            <div class="col-4 col-md-12">
+              {% if post.image %}
+              <img
+                src="{{ post.image.url }}"
+                class="card-img-top"
+                alt="Placeholder Image"
+              />
+              {% else %}
+              <img
+                src="{% static 'images/default-image.jpg' %}"
+                class="card-img-top"
+                alt="Default Image"
+              />
+              {% endif %}
+            </div>
+            <div class="col-8 col-md-12">
+              <div class="card-body">
+                <h6 class="card-title">
+                  <span></span>
+                    <img
+                      src="{% static 'images/megaphone.png'%}"
+                      class="mega"
+                      alt=""
+                  /></span>
+                  {% if post.nature_travail%}
+                  {{post.nature_travail}} à {{post.lieu}}
+                  {% else %}
+                  Travail à {{post.lieu}}
+                   {% endif %}
+                </h6>
+           
+                <p class="card-text">Un recruteur recherche <span class="">{{post.nombre_ouvrier}} {{post.type_ouvrier}}</span> 
+                  <span class="">pour les travaux de {{post.nature_travail}}</span>  à <span class="">{{post.lieu}}</span> le <span class="">{{post.formatted_date}}</span></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <small class="text-muted">{{post.time_since_creation }}</small>
+                  <a
+                    href="{% url 'edit_annonce' post_id=post.id %}"
+                    class="btn btn-sm btn-outline-secondary"
+                    >Editer</a
+                  >
+                  <a
+                    href="{% url 'liked_users' post_id=post.id %}"
+                    class="btn btn-sm btn-outline-secondary postuler"
+                    >Résultats</a
+                  >
+                
+                </div>
+              </div>
+            </div>
+          </div>
+          <a href="{% url 'delete_post' post.id %} ">
+            <button class="btn btn-sm btn-outline-secondary" onclick="">
+              supprimer
+            </button>
+          </a>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .btn-delete {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+  }
+</style>
+
+{% endblock %}

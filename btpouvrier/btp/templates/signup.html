@@ -1,0 +1,121 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="" />
+    <title>Signup</title>
+
+    <!-- Bootstrap core CSS -->
+    <link
+      href="{% static 'assets/dist/css/bootstrap.min.css' %}"
+      rel="stylesheet"
+    />
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'assets/signup.css' %}" rel="stylesheet" />
+  </head>
+  <body class="text-center">
+    <main class="form-signin">
+      <form method="POST" action="{% url 'signup' %}">
+        {% csrf_token %}
+        <h1 class="h3 mb-4 fw-normal">Veuillez vous inscrire</h1>
+        <div>
+          <style>
+            h5 {
+              color: red;
+            }
+          </style>
+          {%for message in messages%}
+          <h5>{{message}}</h5>
+          {%endfor%}
+        </div>
+
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingInput"
+            name="username"
+            placeholder="john smith"
+            required
+          />
+          <label for="floatingInput">Nom d'utilisateur</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="text"
+            class="form-control"
+            id="floatingPassword"
+            name="email"
+            placeholder="Email"
+            required
+          />
+          <label for="floatingPassword">Email</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="password"
+            class="form-control"
+            id="floatingPassword"
+            name="password"
+            placeholder="Mot de passe"
+            required
+          />
+          <label for="floatingPassword">Mot de passe</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input
+            type="password"
+            class="form-control"
+            id="floatingConfirmPassword"
+            name="password2"
+            placeholder="Confirmer mot de passe"
+            required
+          />
+          <label for="floatingConfirmPassword">Confirmer mot de passe</label>
+        </div>
+
+        <div class="form-floating mb-3">
+          <button class="w-100 btn btn-md btn-primary postuler" type="submit">
+            S'inscrire
+          </button>
+        </div>
+      </form>
+      <a href=" ">
+        <button class="w-100 btn btn-sm btn-outline-secondary" onclick="">
+          Se connecter
+        </button>
+      </a>
+
+      <footer class="my-5 pt-5 text-muted text-center text-small">
+        <p class="mb-1">&copy; 2023 Coin d'ouvriers</p>
+        <ul class="list-inline">
+          <li class="list-inline-item"><a href="#">Confidentialité</a></li>
+          <li class="list-inline-item"><a href="#">Utilisation</a></li>
+          <li class="list-inline-item"><a href="#">À propos</a></li>
+        </ul>
+      </footer>
+    </main>
+
+    <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+  </body>
+</html>

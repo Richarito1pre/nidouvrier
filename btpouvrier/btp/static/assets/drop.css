@@ -1,0 +1,62 @@
+.dropy {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  height: 50px;
+  background-color: #f2f2f2;
+}
+
+.menu-icon {
+  position: relative;
+  width: 30px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.menu-icon::before,
+.menu-icon::after,
+.menu-icon div {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #333;
+  transition: all 0.3s ease-in-out;
+}
+
+.menu-icon::before {
+  top: 0;
+}
+
+.menu-icon::after {
+  bottom: 0;
+}
+
+.menu-icon div {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.menu-dropdown {
+  position: absolute;
+  top: 50px;
+  right: 0;
+  width: 200px;
+  background-color: #fff;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+  padding: 10px;
+  display: none;
+}
+
+.menu-dropdown.active {
+  display: block;
+}
+
+.menu-item {
+  padding: 8px 10px;
+  cursor: pointer;
+}
+
+.menu-item:hover {
+  background-color: #f2f2f2;
+}

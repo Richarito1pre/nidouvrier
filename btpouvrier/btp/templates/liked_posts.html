@@ -1,0 +1,99 @@
+{% extends 'base.html' %}
+{% load static %} 
+
+{% block content %}
+</div>
+
+<section class="annonce">
+  <div class="container my-6 annonce ma">
+    <div class="row">
+      {% for liked_post in liked_posts%}
+        <div class="col-md-4 mb-3 carte"> 
+          <div class="card h-100">
+            <div class="row no-gutters align-items-center">
+              <div class="col-4 col-md-12">
+                {% if liked_post.image %}
+                  <img src="{{ liked_post.image.url }}" class="card-img-top" alt="Placeholder Image">
+                {% else %}
+                  <img src="{% static 'images/default-image.jpg' %}" class="card-img-top" alt="Default Image">
+                {% endif %}
+              </div>
+              <div class="col-8 col-md-12">
+                <div class="card-body">
+                  <h6 class="card-title">
+                    <span><img src="{% static 'images/megaphone.png'%}" class="mega" alt="" /></span>
+                    {% if liked_post.nature_travail %}
+                    {{ liked_post.nature_travail }} à {{ liked_post.lieu }}
+                    {% else %}
+                    Travail à {{ liked_post.lieu }}
+                    {% endif %}
+                  </h6>
+                  <p class="card-text">
+                    Un recruteur recherche <span class="">{{ liked_post.nombre_ouvrier }} {{ liked_post.type_ouvrier }}</span>
+                    <span class="">pour les travaux de {{ liked_post.nature_travail }}</span> à <span class="">{{ liked_post.lieu }}</span> le <span class="">{{ liked_post.formatted_date }}</span>
+                  </p>
+                  <div class="d-flex justify-content-between align-items-center">
+                    <small class="text-muted">Publié il y a 5 jours</small>
+                    <form method="post" action="{% url 'delete_like' liked_post.id %}">
+
+                      {% csrf_token %}
+                      <input  class="btn btn-sm btn-outline-secondary postuler" type="submit" value="Annuler" onclick="return confirmDelete();">
+                  </form>
+                  </div>
+                </div>
+              </div>    
+            </div>
+          </div>
+        </div>
+
+
+
+
+        
+      {% endfor %}
+    </div>
+  </div>
+</section> 
+
+
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+
+
+<script>
+  function confirmDelete() {
+      return confirm("Êtes-vous sûr de vouloir Annuler ?"); 
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+<style>
+  .mega {
+    width: 30px;
+  }
+  .inf,h6{
+    font-weight: bold;
+  }
+</style>
+
+
+
+
+
+{% endblock %}

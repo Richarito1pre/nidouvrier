@@ -1,0 +1,215 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Compte</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'fonts/css/all.css' %}">
+  <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+  <link href="{% static 'assets/form-validation.css' %}" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.min.css" rel="stylesheet">
+</head>
+<body class="corps">
+  <div class="container">
+    <h1 class="text-2xl leading-none text-gray-900 tracking-tight mt-3"><a href="/"> Accueil</a> / Profile de <b> {{user.username}}</b> </h1>
+    <main>
+      <div class="py-3 text-center">
+        <h2>Veuillez remplir le formulaire</h2>
+      </div>
+
+      <div class="row g-1">
+        <div class="col-md-7 col-lg-8">
+          <form class="needs-validation" novalidate action="{% url 'settings' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row g-3">
+              <div class="col-sm-6">
+                <label for="firstName" class="form-label">Nom de famille<span class="etoile text-danger">*</span></label>
+                <input type="text" class="form-control" id="firstName" placeholder="{{user_profile.last_name}}" name="last_name" value="{{user_profile.last_name}}" required>
+                <div class="invalid-feedback">Nom valide obligatoire.</div>
+              </div>
+
+              <div class="col-sm-6">
+                <label for="lastName" class="form-label">Prénom</label>
+                <input type="text" class="form-control" id="lastName" placeholder="{{user_profile.first_name}}" name="first_name" value="{{user_profile.first_name}}" required>
+                <div class="invalid-feedback">Prénom valide obligatoire.</div>
+              </div>
+
+              <div class="mb-3">
+                <label for="formFile" class="form-label">Profil</label>
+
+    
+                <input class="form-control col-md-6 col-lg-6" type="file" id="formFile" name="profile_picture">
+              </div>
+
+              <div class="col-12">
+                <label for="address" class="form-label">Adresse</label>
+                <input type="text" class="form-control" id="address" placeholder="Nykonakpoe" name="address" value="{{user_profile.address}}" required>
+                <div class="invalid-feedback">Adresse valide obligatoire.</div>
+              </div>
+
+              <div class="form-group">
+                <label for="group">Groupe :</label>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="group" id="groupe1" value="ouvrier" {% if user_profile.group == "ouvrier" %}checked{% endif %}>
+                  <label class="form-check-label" for="groupe1"><i class="fas fa-hard-hat"></i> Ouvrier</label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="group" id="groupe2" value="technicien" {% if user_profile.group == "technicien" %}checked{% endif %}>
+                  <label class="form-check-label" for="groupe2"><i class="fas fa-wrench"></i> Technicien</label>
+                </div>
+              </div>
+
+              <div class="col-md-5">
+                <label for="cat" class="form-label">Spécialité</label>
+                <select class="form-select" id="cat" required name="specialty">
+                  <option value="">Choisir...</option>
+                  <option {% if user_profile.specialty == "Macon" %}selected{% endif %}>Macon</option>
+                  <option {% if user_profile.specialty == "Plombier" %}selected{% endif %}>Plombier</option>
+                  <option {% if user_profile.specialty == "Charpentier" %}selected{% endif %}>Charpentier</option>
+                  <option {% if user_profile.specialty == "Electricien" %}selected{% endif %}>Electricien</option>
+                  <option value="autre" {% if user_profile.specialty != "Macon" and user_profile.specialty != "Plombier" and user_profile.specialty != "Charpentier" and user_profile.specialty != "Electricien" %}selected{% endif %}>Autre</option>
+                </select>
+                <div class="invalid-feedback">Valider catégorie.</div>
+              </div>
+<div class="col-md-5">
+  <label for="ouvriers" class="form-label">Type d'ouvriers</label>
+  <select class="form-select" id="ouvriers" required>
+    <option value="">Choisir...</option>
+    <option>Maçon</option>
+    <option>Aide-Maçon</option>
+    <option>Menuisier</option>
+    <option>Ferrailleur</option>
+    <option>Charpentier</option>
+    <option>Echaffaudage</option>
+    <option>Plombier</option>
+    <option>Électricien</option>
+    <option>Carreleur</option>
+    <option>Staffeur</option>
+    <option>Peintre</option>
+    <option>Menuiserie Alu</option>
+    <option>Chaudronnier</option>
+    <option>Vitrier(Installation de vitres)</option>
+    <option>Canalisateur</option>
+    <option>Échafaudeur</option>
+    <option>Grutier</option>
+    <option>Géomètre</option>
+    <option>Foreur</option>
+    <option>Staffeur</option>
+  </select>
+</div>
+              <div class="col-md-3">
+                <label for="tel" class="form-label">Téléphone</label>
+                <input type="tel" class="form-control" id="tel" placeholder="Saisir numéro" name="phone_number" value="{{user_profile.phone_number}}" required>
+                <div class="invalid-feedback">Numéro de téléphone obligatoire.</div>
+              </div>
+
+              <div class="col-12 mb-3 autre-specialite" {% if user_profile.specialty == "autre" %}style="display: block"{% else %}style="display: none"{% endif %}>
+                <label for="otherSpecialty" class="form-label">Autre spécialité</label>
+                <input type="text" class="form-control" id="otherSpecialty" placeholder="Saisir autre spécialité" value="{{user_profile.specialty}}">
+              </div>
+
+            
+
+          
+
+              <hr class="my-4">
+
+              <button class="w-100 btn btn-primary btn-lg" type="submit">Enregistrer</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+
+
+
+    
+
+    <footer class="pt-5 my-5 text-muted border-top">&copy; NIDO 2023</footer>
+  </div>
+
+  <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+
+  <script>
+    // JavaScript pour gérer l'affichage du champ "Autre spécialité"
+    document.getElementById("cat").addEventListener("change", function () {
+      var selectedOption = this.value;
+      var autreSpecialite = document.querySelector(".autre-specialite");
+
+      if (selectedOption === "autre") {
+        autreSpecialite.style.display = "block";
+      } else {
+        autreSpecialite.style.display = "none";
+      }
+    });
+
+    // JavaScript pour ajouter la nouvelle option saisie par l'utilisateur à la liste déroulante des spécialités
+    document.getElementById("otherSpecialty").addEventListener("blur", function () {
+      var otherSpecialtyValue = this.value.trim();
+      if (otherSpecialtyValue !== "") {
+        var catSelect = document.getElementById("cat");
+        var optionExists = false;
+
+        for (var i = 0; i < catSelect.options.length; i++) {
+          if (catSelect.options[i].value.toLowerCase() === otherSpecialtyValue.toLowerCase()) {
+            optionExists = true;
+            break;
+          }
+        }
+
+        if (!optionExists) {
+          var newOption = document.createElement("option");
+          newOption.value = otherSpecialtyValue;
+          newOption.text = otherSpecialtyValue;
+          catSelect.add(newOption);
+        }
+      }
+    });
+
+    // intl-tel-input initialization
+    var input = document.querySelector("#tel");
+    window.intlTelInput(input, {
+      separateDialCode: true,
+      initialCountry: "auto",
+      preferredCountries: ["us", "gb", "fr", "de"],
+      utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
+    });
+
+    // JavaScript pour la validation des formulaires
+    (function () {
+      "use strict";
+
+      var forms = document.querySelectorAll(".needs-validation");
+
+      Array.prototype.slice.call(forms).forEach(function (form) {
+        form.addEventListener("submit", function (event) {
+          if (!form.checkValidity()) {
+            event.preventDefault();
+            event.stopPropagation();
+          }
+
+          form.classList.add("was-validated");
+        }, false);
+      });
+    })();
+  </script>
+</body>
+</html>

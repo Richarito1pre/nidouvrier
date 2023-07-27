@@ -1,0 +1,302 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <title>Ajouter</title>
+
+  <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
+  <link rel="stylesheet" type="text/css" href="../fonts/css/all.css">
+
+  <!-- Bootstrap core CSS -->
+  <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'assets/form-validation.css' %}" rel="stylesheet">
+</head>
+<body class="corps">
+<header class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow mynav">
+  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 py-3" href="#">
+    <div>
+      Coin des ouvriers
+    </div>
+  </a>
+
+  <div class="navbar-nav">
+    <div class="nav-item text-nowrap">
+      <a class="nav-link px-3 text-light" href="#">Déconnecter</a>
+    </div>
+  </div>
+</header>
+<div class="container-fluid sticky-top flex-md-nowrap p-0 myflex">
+  <div class="d-flex justify-content-between shadow-regular">
+    <div class="p-3 bd-highlight">
+      <a href="{% url 'home' %}" style="text-decoration: none; color: #3300ff;">Accueil</a>
+    </div>
+    <div class="p-3 bd-highlight">
+      <a href="" style="text-decoration: none;color: #3300ff;color: #3300ff; ">Mes annonces</a>
+    </div>
+    <div class="p-3 bd-highlight">
+      <a href="" style="text-decoration: none;color: #3300ff;color: #3300ff; ">Favoris</a>
+    </div>
+    <div class="p-3 bd-highlight" style="text-decoration: none; ">
+      <a href="" style="text-decoration: none; color: #3300ff; ">Notification</a>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+  <main>
+    <div class="row g-1 my-5">
+      <div class="col-md-12 col-lg-12">
+        <form class="needs-validation" method="post" action="{% url 'upload' %}" enctype="multipart/form-data" novalidate>
+          {% csrf_token %}
+          <div class="row g-3">
+            <div class="col-sm-6 col-md-6">
+              <label for="titre" class="form-label">Nature du travail<span class="etoile text-muted">*</span></label>
+              <input type="text" class="form-control" id="titre" placeholder="Quel travail?" value="" name="nature_travail" required>
+              <small id="natureError" class="error-text invalid-feedback"></small>
+            </div>
+            
+            <div class="col-sm-6 col-md-6">
+              <label for="titre" class="form-label">Lieu<span class="etoile text-danger">*</span></label>
+              <select type="text" class="form-control form-control-md" id="lieu" placeholder="Lieu du chantier" value="" required name="lieu">
+                <option value="">Choisir...</option>
+    <option>Adakpamé</option>
+    <option>Adétikopé</option>
+    <option>Adawlato</option>
+    <option>Adéwi</option>
+    <option>Adidogomé</option>
+    <option>Agbalépédogan</option>
+    <option>Agoè Assiyéyé</option>
+    <option>Agoè Cacaveli</option>
+    <option>Agoè Centre</option>
+    <option>Agoè Démakpoè</option>
+    <option>Agoè Est</option>
+    <option>Agoè Forever</option>
+    <option>Agoè Logopé</option>
+    <option>Agoè Mission</option>
+    <option>Agoè Nyivé</option>
+    <option>Agoè Sémé</option>
+    <option>Agoè Zongo</option>
+    <option>Akodesséwa</option>
+    <option>Amoutivé</option>
+    <option>Anfamé</option>
+    <option>Atigangomé</option>
+    <option>Attiégou</option>
+    <option>Attikoumé</option>
+    <option>Avépozo</option>
+    <option>Avedji</option>
+    <option>Baguida</option>
+    <option>Bè-Klikamé</option>
+    <option>Bè-Kpota</option>
+    <option>Dalavé</option>
+    <option>Davié</option>
+    <option>Dékon</option>
+    <option>Djaglé</option>
+    <option>Djidjolé</option>
+    <option>Doumasséssé</option>
+    <option>Entreprise de l' union</option>
+    <option>Gbossimé</option>
+    <option>Hédjranawoé</option>
+    <option>Hanoukopé</option>
+    <option>Limousine</option>
+    <option>Lomé-Port</option>
+    <option>Lomé-Séminaire</option>
+    <option>Kégué</option>
+    <option>Kodjoviakopé</option>
+    <option>Klikamé</option>
+    <option>Kpodji</option>
+    <option>Kpogan</option>
+    <option>Nukafu</option>
+    <option>Nyékonakpoè</option>
+    <option>Plateau</option>
+    <option>Quartier Adminstratif</option>
+    <option>Sagbado</option>
+    <option>Ségbé</option>
+    <option>Sossimé</option>
+    <option>Togo 2000</option>
+    <option>Tokoin</option>
+    <option>Totsi</option>
+    <option>Tsevié</option>
+    <option>Zanguéra</option>
+
+              </select>
+              
+              <div class="invalid-feedback">
+                Lieu obligatoire.
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+              <label for="titre" class="form-label">Date <span class="etoile text-danger">*</span></label>
+              <input type="date" min="" max="" class="form-control form-control-md" id="date_travo" placeholder="Date à laquelle les ouvriers viennent" value="" required name="date_travo">
+              <small class="text-muted">Date à laquelle les ouvriers doivent se rendre</small>
+              <div class="invalid-feedback">
+                <span id="dateError" class="error-text"></span>
+              </div>
+              
+            </div>
+
+              <div class="col-sm-6 col-md-6">
+              <label for="ouvrier" class="form-label">Image</label>
+              <input type="file" class="form-control" id="chantier" placeholder="l'image illustrant le travail" value="" name="image">
+            </div>
+
+
+
+            <div class="col-md-5">
+              <label for="ouvriers" class="form-label">Type d'ouvriers</label>
+              <select type="text" class="form-control form-control-md" id="type" placeholder="typeOuvrier" value="" required name="typeOuvrier">
+                <option value="">Choisir...</option>
+                <option>Technicien</option>
+                <option>Maçon</option>
+                 <option>Aide-Maçon</option>
+                <option>Menuisier</option>
+                <option>Ferrailleur</option>
+                <option>Charpentier</option>
+                <option>Plombier</option>
+                <option>Électricien</option>
+                <option>Carreleur</option>
+                <option>Staffeur</option>
+                <option>Peintre</option>
+                <option>Menuiserie Alu</option>
+                <option>Chaudronnier</option>
+                <option>Vitrier(Installation de vitres)</option>
+                <option>Canalisateur</option>
+                <option>Échafaudeur</option>
+                <option>Grutier</option>
+                <option>Géomètre</option>
+                <option>Foreur</option>
+                <option>Staffeur</option>
+              </select>
+             
+            </div>
+
+
+
+
+          
+            <div class="col-sm-6 col-md-6">
+              <label for="ouvrier" class="form-label">Nombre d'ouvriers</label>
+              <input type="number" max="100" min="1" class="form-control" id="ouvrier" placeholder="Nombre d'ouvriers dont vous avez besoin" value="" required name="nombreOuvrier">
+              <div class="invalid-feedback">
+                Nombre d'ouvriers valide obligatoire.
+              </div>
+            </div>
+
+
+
+            <div class="container">
+              <a href="#">
+                <div>
+                  <button class="w-100 btn btn-primary btn-lg postuler" type="submit">Enregistrer</button>
+                </div>
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </main>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">&copy; 2023 Coin d'ouvriers</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Confidentialité</a></li>
+        <li class="list-inline-item"><a href="#">Utilisation</a></li>
+        <li class="list-inline-item"><a href="#">À propos</a></li>
+      </ul>
+    </footer>
+  </div>
+
+  <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'assets/form-validation.js' %}"></script>
+
+
+
+  <script>
+    const dateTravoInput = document.getElementById('date_travo');
+    const today = new Date().toISOString().split('T')[0];
+    const maxDate = new Date();
+    maxDate.setMonth(maxDate.getMonth() + 1);
+    const maxDateValue = maxDate.toISOString().split('T')[0];
+  
+    dateTravoInput.setAttribute('min', today);
+    dateTravoInput.setAttribute('max', maxDateValue);
+  
+    dateTravoInput.addEventListener('input', function() {
+      const selectedDate = new Date(dateTravoInput.value);
+      const currentDate = new Date();
+      const dateError = document.getElementById('dateError');
+  
+      if (selectedDate < currentDate) {
+        dateError.textContent = 'La date doit être ultérieure à aujourd\'hui.';
+        dateTravoInput.setCustomValidity('La date doit être ultérieure à aujourd\'hui.');
+      } else if (selectedDate > maxDate) {
+        dateError.textContent = 'La date ne peut pas être supérieure à un mois à partir d\'aujourd\'hui.';
+        dateTravoInput.setCustomValidity('La date ne peut pas être supérieure à un mois à partir d\'aujourd\'hui.');
+      } else {
+        dateError.textContent = '';
+        dateTravoInput.setCustomValidity('');
+      }
+    });
+  </script>
+
+
+<script>
+  const natureTravailInput = document.getElementById('titre');
+  const natureError = document.getElementById('natureError');
+  
+  natureTravailInput.addEventListener('input', function() {
+    const inputValue = natureTravailInput.value.trim();
+    const regex = /\d/;
+    const isValid = !regex.test(inputValue);
+    
+    if (inputValue === '') {
+      natureError.textContent = 'Ce champ est obligatoire.';
+      natureTravailInput.setCustomValidity('Ce champ est obligatoire.');
+    } else if (!isValid) {
+      natureError.textContent = 'Le champ ne peut pas contenir de chiffres.';
+      natureTravailInput.setCustomValidity('Le champ ne peut pas contenir de chiffres.');
+    } else {
+      natureError.textContent = '';
+      natureTravailInput.setCustomValidity('');
+    }
+  });
+</script>
+
+  
+
+</body>
+</html>

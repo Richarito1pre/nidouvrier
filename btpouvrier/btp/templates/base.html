@@ -1,0 +1,292 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}nido{% endblock %}</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'fonts/css/all.css' %}"
+    />
+    <link
+      href="{% static 'assets/dist/css/bootstrap.min.css' %}"
+      rel="stylesheet"
+    />
+    <link href="{% static 'assets/brillance.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/rajdhanii.css' %}" rel="stylesheet" />
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+     
+    </style>
+    <style>
+      :root {
+        --primary-color: #777777;
+        --secondary-color: none;
+        --background-color: #ffffff;
+        --menu-width:60%;
+    
+      }
+  
+      .ft {
+        display: flex;
+        background-color: var(--background-color);
+        margin: 0;
+      }
+  
+      .nav-top {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 100%;
+        height: 50px;
+        background-color: var(--secondary-color);
+        z-index: 100;
+      }
+  
+      .nav-top .hamburger {
+        margin-right: 20px;
+        color: var(--background-color);
+        cursor: pointer;
+      }
+  
+      .nav-drill {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: var(--menu-width);
+        height: 65vh;
+        background-color: var(--primary-color);
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 1000;
+      }
+  
+      .nav-is-toggled .nav-drill {
+        transform: translateX(0);
+      }
+  
+      .nav-items {
+        padding: 20px;
+        list-style: none;
+        margin: 0;
+        padding-inline-start: 0;
+      }
+  
+      .nav-item {
+        margin-top: 10px;
+      }
+  
+      .nav-link {
+        color: var(--background-color);
+        text-decoration: none;
+        font-size: 16px;
+        display: block;
+        transition: background-color 0.3s ease;
+        padding: 10px;
+        margin: 0 10px;
+
+      }
+     
+  
+      
+    </style>
+
+
+
+
+
+    
+
+
+
+<!-- Dans le fichier ouvrier.html -->
+
+<style>
+  /* ... Autres styles ... */
+
+  .active-link {
+    color: #ff0c00  !important; /* Couleur de fond du lien actif */
+  }
+</style>
+
+    <link href="{% static 'assets/form-validation.css' %}" rel="stylesheet" />
+  </head>
+  <body class="corps">
+    <header
+      class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow mynav"
+    >
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 py-3" href="#">
+        <div class="nido"><img src="{% static '/nidooff.png' %}" alt="Megaphone Icon"></div>
+      </a>
+      
+      <div class="navbar-nav">
+        <div class="nav-item text-nowrap">
+          <a class="nav-link px-3 text-light hamburger material-icons" id="ham" href="#">&#x22EE</a>
+        </div>
+      </div>
+    </header>
+    <div class="ft">
+      <nav class="nav-drill">
+        <ul class="nav-items">
+            <li class="nav-item">
+            <a class="nav-link" href="#"></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Accueil</a>
+          </li>
+                <hr>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Services</a>
+          </li>
+                <hr>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Politique de d'utilisation</a>
+          </li>
+          <hr>
+          <li class="nav-item">
+            <a class="nav-link" href="#">À propos</a>
+          </li>
+          <hr>
+          <li class="nav-item">
+            <a class="nav-link" href="#">Contact</a>
+          </li>
+          <hr>
+           <li class="nav-item">
+            <a class="nav-link" href="#">Outil professionnel</a>
+          </li>
+        </ul>
+      </nav>
+      
+    </div>
+    <div class="container-fluid sticky-top flex-md-nowrap p-0 myflex">
+      <div class="d-flex justify-content-between shadow-regular">
+        <div class="p-3 bd-highlight">
+          <a
+            href="{% url 'home' %}"
+            style="text-decoration: none; color: #3300ff"
+            class="nav-link"
+            >Accueil</a
+          >
+        </div>
+        <div class="p-3 bd-highlight">
+          <a
+            id="link-annonce"
+            href="{% url 'profile' pk=request.user.username %}"
+            style="text-decoration: none; color: #3300ff"
+            class="nav-link"
+            >Mes annonces</a
+          >
+        </div>
+        <div class="p-3 bd-highlight">
+          <a
+            id="link-favoris"
+            href="{% url 'liked_posts' username=user.username %}"
+            style="text-decoration: none; color: #3300ff"
+            class="nav-link"
+            >Favoris</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="container my-3 sticky-top flex-md-nowrap p-0">
+      <div class="col-sm-8 col-md-12 col-lg-12">
+        <form class="card p-1" method="GET" action="{% url 'search' %}">
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control recher"
+              placeholder="saisir expression à rechercher"
+              id="query" name="search_query"/>
+              <button type="submit" class="btn btn-primary">Rechercher</button>
+
+          </div>
+        </form>
+        
+      </div>
+    </div>
+
+    <div class="container">{% block content %} {% endblock %}</div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">&copy; 2023 Nido</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Confidentialité</a></li>
+        <li class="list-inline-item"><a href="#">Utilisation</a></li>
+        <li class="list-inline-item"><a href="#">À propos</a></li>
+      </ul>
+    </footer>
+
+
+
+    <style>
+      .nido img{
+        width: auto;
+        height: 25px;
+        margin-right: 0px;
+      }
+    </style>
+
+    <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/form-validation.js' %}"></script>
+    
+    
+    <script>
+      const ham = document.getElementById('ham');
+      const navDrill = document.querySelector('.nav-drill');
+      const navItems = document.querySelector('.nav-items');
+  
+      ham.addEventListener('click', function() {
+        document.body.classList.toggle('nav-is-toggled');
+      });
+  
+      navItems.addEventListener('click', function() {
+        document.body.classList.remove('nav-is-toggled');
+      });
+    </script>
+
+  
+
+<!-- Modèle base.html -->
+<!-- ... Autre contenu du modèle ... -->
+
+<script>
+  const links = document.querySelectorAll('.nav-link');
+
+  // Récupérer le chemin d'accès actuel
+  const currentPath = window.location.pathname;
+
+  // Activer la classe 'active-link' pour le lien correspondant au chemin d'accès actuel
+  links.forEach(link => {
+    if (link.getAttribute('href') === currentPath) {
+      link.classList.add('active-link');
+    }
+  });
+</script>
+
+<!-- ... Autre contenu du modèle ... -->
+
+
+
+
+
+  
+  </body>
+</html>

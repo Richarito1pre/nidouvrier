@@ -1,0 +1,42 @@
+/* styles.css */
+
+@font-face {
+    font-family: 'Rajdhani Light';
+    src: url('/static/fonts/Rajdhani-Light.ttf') format('woff');
+}
+
+@font-face {
+    font-family: 'Rajdhani Regular';
+    src: url('/static/fonts/Rajdhani-Regular.ttf') format('woff');
+}
+
+@font-face {
+    font-family: 'Rajdhani Semi-Bold';
+    src: url('/static/fonts/Rajdhani-SemiBold.ttf') format('woff');
+}
+
+@font-face {
+    font-family: 'Rajdhani Medium';
+    src: url('/static/fonts/Rajdhani-Medium.tff') format('woff');
+}
+
+@font-face {
+    font-family: 'Rajdhani Bold';
+    src: url('/static/fonts/Rajdhani-Bold.woff') format('woff');
+}
+
+/* Utilisation des différentes variantes de la police Rajdhani */
+body {
+    font-family: 'Rajdhani Light', sans-serif; /* Utilisation de la police Rajdhani Regular pour le corps du texte */
+    font-weight: normal; /* Utilisation de la police Rajdhani Bold pour les éléments gras */
+}
+
+h1 {
+    font-family: 'Rajdhani Light', sans-serif; /* Utilisation de la police Rajdhani Light pour les titres */
+    font-weight: lighter; /* Par défaut, 'font-weight' est déjà en gras, donc on remet à 'normal' */
+}
+
+em {
+    font-family: 'Rajdhani Semi-Bold', sans-serif; /* Utilisation de la police Rajdhani Semi-Bold pour les éléments italiques */
+    font-style: italic; /* Applique le style italique */
+}

@@ -1,0 +1,306 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>gran acc</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'fonts/css/all.css' %}"
+    />
+
+    <!-- Bootstrap core CSS -->
+    <link
+      href="{% static 'assets/dist/css/bootstrap.min.css' %}"
+      rel="stylesheet"
+    />
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'assets/form-validation.css' %}" rel="stylesheet" />
+    <link href="{% static 'assets/drop.css' %}" rel="stylesheet" />
+  </head>
+  <body class="corps">
+    <header
+      class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow mynav"
+    >
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 py-3" href="#">
+        <div>Coin des ouvriers</div>
+      </a>
+      <div class="navbar-nav">
+        <div class="nav-item text-nowrap">
+          <a
+            class="nav-link px-3 text-light fs-2"
+            href="#"
+            onclick="toggleMenu()"
+            >&#x22EE;</a
+          >
+        </div>
+      </div>
+    </header>
+
+    <div class="container-fluid sticky-top flex-md-nowrap p-0 myflex">
+      <div class="d-flex justify-content-between shadow-regular">
+        <div class="p-3 bd-highlight">
+          <a
+            href="{% url 'signup' %}"
+            style="text-decoration: none; color: #3300ff"
+            >Accueil</a
+          >
+        </div>
+        <div class="p-3 bd-highlight">
+          <a
+            href="{% url 'signup' %}"
+            style="text-decoration: none; color: #3300ff"
+            >Mes annonces</a
+          >
+        </div>
+        <div class="p-3 bd-highlight">
+          <a
+            href="{% url 'signup' %}"
+            style="text-decoration: none; color: #3300ff"
+            >Favoris</a
+          >
+        </div>
+        <div class="p-3 bd-highlight" style="text-decoration: none">
+          <a
+            href="{% url 'signup' %}"
+            style="text-decoration: none; color: #3300ff"
+            >Notification</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <div class="container my-3 sticky-top flex-md-nowrap p-0">
+      <div class="col-sm-8 col-md-12 col-lg-12">
+        <form class="card p-1">
+          <div class="input-group">
+            <input
+              type="text"
+              class="form-control recher"
+              placeholder="saisir expression à rechercher"
+            />
+            <button type="submit" class="btn btn-secondary recherche">
+              rechercher
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div class="container-fluid mb-3 p">
+      <form class="card p-2">
+        <img
+          src="{% static 'assets/image/18.png' %}"
+          alt="Image ourier"
+          width="100%"
+          height=""
+        />
+      </form>
+    </div>
+
+    <section class="annonce">
+      <div class="container my-6 annonce ma">
+        <div class="row">
+          <div class="col-md-4 mb-3 carte">
+            <div class="card h-100">
+              <div class="row no-gutters align-items-center">
+                <div class="col-4 col-md-12">
+                  <img
+                    src="{% static 'assets/image/7.png' %}"
+                    class="card-img-top"
+                    alt="Placeholder Image"
+                  />
+                </div>
+                <div class="col-8 col-md-12">
+                  <div class="card-body">
+                    <h5 class="card-title">Titre de l'annonce</h5>
+                    <p class="card-text">Description de l'annonce</p>
+                    <div
+                      class="d-flex justify-content-between align-items-center"
+                    >
+                      <small class="text-muted">Publié il y a 5 jours</small>
+                      <a
+                        href="/like-post?post_id={{post.id}}"
+                        class="btn btn-sm btn-outline-secondary postuler"
+                        >postuler</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="card h-100">
+              <div class="row no-gutters align-items-center">
+                <div class="col-4 col-md-12">
+                  <img
+                    src="{% static 'assets/image/3.png' %}"
+                    class="card-img-top"
+                    alt="Placeholder Image"
+                  />
+                </div>
+                <div class="col-8 col-md-12">
+                  <div class="card-body">
+                    <h5 class="card-title">Titre de l'annonce</h5>
+                    <p class="card-text">Description de l'annonce</p>
+                    <div
+                      class="d-flex justify-content-between align-items-center"
+                    >
+                      <small class="text-muted">Publié il y a 5 jours</small>
+                      <a
+                        href="/like-post?post_id={{post.id}}"
+                        class="btn btn-sm btn-outline-secondary postuler"
+                        >postuler</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-4 mb-3">
+            <div class="card h-100">
+              <div class="row no-gutters align-items-center">
+                <div class="col-4 col-md-12">
+                  <img
+                    src="{% static 'assets/image/1.png' %}"
+                    class="card-img-top"
+                    alt="Placeholder Image"
+                  />
+                </div>
+                <div class="col-8 col-md-12">
+                  <div class="card-body">
+                    <h5 class="card-title">Titre de l'annonce</h5>
+                    <p class="card-text">Description de l'annonce</p>
+                    <div
+                      class="d-flex justify-content-between align-items-center"
+                    >
+                      <small class="text-muted">Publié il y a 5 jours</small>
+                      <a
+                        href="/like-post?post_id={{post.id}}"
+                        class="btn btn-sm btn-outline-secondary postuler"
+                        >postuler</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <a class="page-link" href="#" tabindex="-1" aria-disabled="true"
+              >Précédent</a
+            >
+          </li>
+          <li class="page-item active"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Suivant</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <footer class="footer mt-auto py-3 bg-light">
+      <div class="container">
+        <span class="text-muted">&copy; 2023 Coin des ouvriers</span>
+      </div>
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Modal Title</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p>Modal Body</p>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="dropdown-content">
+      <a href="#">Option 1</a>
+      <a href="#">Option 2</a>
+      <a href="#">Option 3</a>
+    </div>
+
+    <script>
+      function toggleMenu() {
+        var menuDropdown = document.getElementById("menu-dropdown");
+        menuDropdown.classList.toggle("active");
+      }
+
+      var modal = document.getElementById("exampleModal");
+      var dropdownMenu = document.getElementById("dropdownMenu");
+
+      dropdownMenu.addEventListener("click", function () {
+        modal.style.display = "block";
+      });
+
+      window.addEventListener("click", function (event) {
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>

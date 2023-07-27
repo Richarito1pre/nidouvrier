@@ -1,0 +1,38 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<style>
+  .rounded-image {
+    border-radius: 50%;
+  }
+</style>
+<div class="container">
+  {% for profile in profiles %}
+  <div class="profile">
+    {% if profile.profile_picture %}
+    <img
+      src="{{ profile.profile_picture.url }}"
+      alt="Profile Picture"
+      class="rounded-image"
+      style="width: 100px; height: 100px"
+    />
+    {% else %}
+    <img
+      src="{% static 'default-profile-picture.png' %}"
+      alt="Default Profile Picture"
+      class="rounded-image"
+      style="width: 100px; height: 100px"
+    />
+    {% endif %}
+    <h2>{{ profile.user.username }}</h2>
+    <p>Prénom: {{ profile.first_name }}</p>
+    <p>Nom: {{ profile.last_name }}</p>
+    <p>Adresse: {{ profile.address }}</p>
+    <p>Groupe: {{ profile.group }}</p>
+    <p>Spécialité: {{ profile.specialty }}</p>
+    <p>Numéro de téléphone: {{ profile.phone_number }}</p>
+    <!-- Autres informations du profil -->
+  </div>
+  {% empty %}
+  <p>Aucun profil utilisateur n'est disponible.</p>
+  {% endfor %}
+</div>
+{% endblock %}

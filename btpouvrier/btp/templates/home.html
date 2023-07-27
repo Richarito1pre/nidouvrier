@@ -1,0 +1,119 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load humanize %}
+{% block content %}
+<section class="annonce">
+  <div class="container my-6 annonce ma">
+    <div class="row">
+      {% for formatted_post in formatted_posts reversed %}
+      <div class="col-md-4 mb-3 carte">
+        <div class="card h-100">
+          <div class="row no-gutters align-items-center">
+            <div class="col-4 col-md-12">
+              {% if formatted_post.post.image %}
+              <img src="{{ formatted_post.post.image.url }}" class="card-img-top" alt="Placeholder Image" />
+              {% else %}
+              <img src="{% static 'images/default-image.jpg' %}" class="card-img-top" alt="Default Image" />
+              {% endif %}
+            </div>
+            <div class="col-8 col-md-12">
+              <div class="card-body">
+                <h6 class="card-title">
+                  <span><img src="{% static 'images/megaphone.png'%}" class="mega" alt="" /></span>
+                  {% if formatted_post.post.nature_travail %}
+                  {{ formatted_post.post.nature_travail }} à {{ formatted_post.post.lieu }}
+                  {% else %}
+                  Travail à {{ formatted_post.post.lieu }}
+                  {% endif %}
+                </h6>
+                <p class="card-text">
+                  Un recruteur recherche <span class="">{{ formatted_post.post.nombre_ouvrier }} {{ formatted_post.post.type_ouvrier }}</span>
+                  <span class="">pour les travaux de {{ formatted_post.post.nature_travail }}</span> à <span class="">{{ formatted_post.post.lieu }}</span> le <span class="">{{ formatted_post.formatted_date }}</span>
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <small class="text-muted">{{ formatted_post.post.time_since_creation }}</small>
+                  {% if formatted_post.post.id not in liked_posts %}
+                  <a href="/like-post?post_id={{ formatted_post.post.id }}" class="btn btn-sm btn-outline-secondary postuler">Postuler</a>
+                  {% else %}
+                  <a href="/like-post?post_id={{ formatted_post.post.id }}" class="btn btn-sm btn-outline-secondary postuler">Postuler</a>
+                  {% endif %}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<div class="container">
+  <nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+      <li class="page-item disabled">
+        <a class="page-link">Previous</a>
+      </li>
+      <li class="page-item"><a class="page-link" href="#">1</a></li>
+      <li class="page-item"><a class="page-link" href="#">2</a></li>
+      <li class="page-item"><a class="page-link" href="#">3</a></li>
+      <li class="page-item">
+        <a class="page-link" href="#">Next</a>
+      </li>
+    </ul>
+  </nav>
+</div>
+
+<div class="container">
+  <div>
+    <a href="">
+      <i class="fas fa-circle-add"></i>
+    </a>
+  </div>
+</div>
+
+<div class="container">
+  <a href="{% url 'addanonce' %}">
+    <div>
+      <button class="w-100 btn btn-primary btn-lg postuler" type="submit">Ajouter une nouvelle annonce</button>
+    </div>
+  </a>
+</div>
+
+<style>
+  .floating-button {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 999;
+  }
+
+  .floating-button button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: none;
+    color: #ffffff;
+    border: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    font-size: 24px;
+  }
+
+  .floating-button button img {
+    width: 50px;
+    height: 50px;
+    margin-right: 5px;
+  }
+</style>
+
+<div class="floating-button">
+  <a href="">
+    <button class="btn btn-primary btn-lg" type="submit">
+      <img src="{% static '/megaphone.png' %}" alt="Megaphone Icon">
+    </button>
+  </a>
+</div>
+{% endblock %}

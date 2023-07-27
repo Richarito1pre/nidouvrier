@@ -1,0 +1,167 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>favoris</title>
+
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'fonts/css/all.css' %}"
+    />
+
+    <!-- Bootstrap core CSS -->
+    <link
+      href="{% static 'assets/dist/css/bootstrap.min.css' %}"
+      rel="stylesheet"
+    />
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'assets/form-validation.css' %}" rel="stylesheet" />
+  </head>
+  <body class="corps">
+    <header
+      class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow mynav"
+    >
+      <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 py-3" href="#">
+        <div>Coin des ouvriers</div>
+      </a>
+      <div class="navbar-nav">
+        <div class="nav-item text-nowrap">
+          <a class="nav-link px-3 text-light" href="#">Déconnecter</a>
+        </div>
+      </div>
+    </header>
+    <div class="container-fluid sticky-top flex-md-nowrap p-0 myflex">
+      <div class="d-flex justify-content-between shadow-regular">
+        <div class="p-3 bd-highlight">
+          <a
+            href="{% url 'home' %}"
+            style="text-decoration: none; color: #3300ff"
+            >Accueil</a
+          >
+        </div>
+        <div class="p-3 bd-highlight">
+          <a
+            href="{% url 'mesannonces' %}"
+            style="text-decoration: none; color: #3300ff"
+            >Mes annonces</a
+          >
+        </div>
+        <div class="p-3 bd-highlight">
+          <a
+            href="{% url 'favoris' %}"
+            style="text-decoration: none; color: #3300ff"
+            >Favoris</a
+          >
+        </div>
+        <div class="p-3 bd-highlight" style="text-decoration: none">
+          <a href="" style="text-decoration: none; color: #3300ff"
+            >Notification</a
+          >
+        </div>
+      </div>
+    </div>
+
+    <section class="annonce">
+      <div class="container my-6 annonce ma">
+        <div class="row">
+          {% if like in user_likes %}
+          <div class="col-md-4 mb-3 carte">
+            <div class="card h-100">
+              <div class="row no-gutters align-items-center">
+                <div class="col-4 col-md-12">
+                  <img
+                    src="../7.png"
+                    class="card-img-top"
+                    alt="Placeholder Image"
+                  />
+                </div>
+                <div class="col-8 col-md-12">
+                  <div class="card-body">
+                    <h5 class="card-title">true</h5>
+                    <h5 class="card-title"></h5>
+                    <p class="card-text"></p>
+                    <div
+                      class="d-flex justify-content-between align-items-center"
+                    >
+                      <small class="text-muted">Publié il y a 5 jours</small>
+                      <a
+                        href="#"
+                        class="btn btn-sm btn-outline-secondary postuler"
+                        >Annuler</a
+                      >
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </section>
+    <div class="container">
+      <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+          <li class="page-item disabled">
+            <a class="page-link">Previous</a>
+          </li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item">
+            <a class="page-link" href="#">Next</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div class="container">
+      <div>
+        <a href="">
+          <i class="fas fa-circle-add"></i>
+        </a>
+      </div>
+    </div>
+    <div class="container">
+      <a href="{% url 'home' %}">
+        <div>
+          <button class="w-100 btn btn-primary btn-lg postuler" type="submit">
+            Postuler à nouveau
+          </button>
+        </div>
+      </a>
+    </div>
+
+    <footer class="my-5 pt-5 text-muted text-center text-small">
+      <p class="mb-1">&copy; 2023 Coin d'ouvriers</p>
+      <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Confidentialité</a></li>
+        <li class="list-inline-item"><a href="#">Utilisation</a></li>
+        <li class="list-inline-item"><a href="#">A propos</a></li>
+      </ul>
+    </footer>
+
+    <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'assets/form-validation.js' %}"></script>
+  </body>
+</html>

@@ -1,0 +1,66 @@
+.container {
+  max-width: 960px;
+}
+.corps{
+  background-color: aliceblue;
+}
+.categorie{
+  width: 25%;
+}
+.catgroupe{
+  display:inline-grid;
+}
+.mynav{
+  background-color: #3300ff !important;
+
+}
+.myflex{
+  color: #3300ff;
+  font-weight:600;
+  background-color: white;
+  border-bottom: solid lightgrey 0.5px;
+  text-decoration: none !important;
+
+
+}
+.recherche{
+  background-color:#3300ff;
+  color: white;
+}
+.recherche: hover{
+  background-color: #fe6600;
+  color: white;
+}
+.recher{
+  background-color: aliceblue;
+}
+
+.annonce{
+  margin-top: 20px;
+}
+.postuler{
+  background-color: #3300ff;
+  color: white;
+}
+.postuler:hover{
+  background-color: #fe6600 !important;
+  color: white;
+}
+#a{
+  text-decoration: none;
+}
+.ico{
+
+  font-size: 800px;
+
+
+
+ 
+
+
+}
+.bgico{
+background-color:orange;
+width: 800px;
+height: 800px;
+}

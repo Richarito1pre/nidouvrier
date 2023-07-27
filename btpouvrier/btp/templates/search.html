@@ -1,0 +1,67 @@
+{% extends 'base.html' %} {% load static %} {% block content %}
+<section class="annonce">
+  <div class="container my-6 annonce ma">
+    <div class="row">
+      {% for post in posts %}
+      <div class="col-md-4 mb-3 carte">
+        <div class="card h-100">
+          <div class="row no-gutters align-items-center">
+            <div class="col-4 col-md-12">
+              {% if post.image %}
+              <img
+                src="{{ post.image.url }}"
+                class="card-img-top"
+                alt="Placeholder Image"
+              />
+              {% else %}
+              <img
+                src="{% static 'images/default-image.jpg' %}"
+                class="card-img-top"
+                alt="Default Image"
+              />
+              {% endif %}
+            </div>
+            <div class="col-8 col-md-12">
+              <div class="card-body">
+                <h6 class="card-title">
+                  <span>
+                    <img
+                      src="{% static 'images/megaphone.png'%}"
+                      class="mega"
+                      alt=""
+                    />
+                  </span>
+                  {% if post.nature_travail %}
+                  {{ post.nature_travail }} à {{ post.lieu }}
+                  {% else %}
+                  Travail à {{ post.lieu }}
+                  {% endif %}
+                </h6>
+                <p class="card-text">
+                  Un recruteur recherche
+                  <span class="">{{ post.nombre_ouvrier }} {{ post.type_ouvrier }}</span>
+                  <span class="">pour les travaux de {{ post.nature_travail }}</span>
+                  à
+                  <span class="">{{ post.lieu }}</span>
+                  le
+                  <span class="">{{ post.date_travo }}</span>
+                </p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <small class="text-muted">Publié il y a 5 jours</small>
+                  <a
+                    href="/like-post?post_id={{ post.id }}"
+                    class="btn btn-sm btn-outline-secondary postuler"
+                    >Postuler</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% empty %}
+      <p>Aucun résultat trouvé.</p>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock %}

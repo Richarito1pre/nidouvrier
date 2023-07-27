@@ -1,0 +1,210 @@
+{% load static %}
+
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.84.0">
+    <title>Checkout example · Bootstrap v5.0</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/checkout/">
+    <link rel="stylesheet" type="text/css" href="{% static 'fonts/css/all.css' %}">
+
+    <!-- Bootstrap core CSS -->
+    <link href="{% static 'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/contact.css' %}">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+
+    <!-- Custom styles for this template -->
+    <link href="{% static 'assets/form-validation.css' %}" rel="stylesheet">
+</head>
+<body class="corps">
+<header class="navbar navbar-dark sticky-top bg-primary flex-md-nowrap p-0 shadow mynav">
+    <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 py-3" href="#">
+        <div>
+            Coin des ouvriers
+        </div>
+    </a>
+
+    <div class="navbar-nav">
+        <div class="nav-item text-nowrap">
+            <a class="nav-link px-3 text-light" href="#">Déconnecter</a>
+        </div>
+    </div>
+</header>
+<div class="container-fluid sticky-top flex-md-nowrap p-0 myflex">
+    <div class="d-flex justify-content-between shadow-regular">
+        <div class="p-3 bd-highlight">
+            <a href="{% url 'home' %}" style="text-decoration: none; color: #3300ff;">Accueil</a>
+        </div>
+        <div class="p-3 bd-highlight">
+            <a href="{% url 'profile' pk=request.user.username %}" style="text-decoration: none;color: #3300ff;">Annonces</a>
+        </div>
+        <div class="p-3 bd-highlight">
+            <a href="{% url 'liked_posts' username=user.username %}" style="text-decoration: none;color: #3300ff;">Favoris</a>
+        </div>
+        <div class="p-3 bd-highlight" style="text-decoration: none;">
+            <a href="" style="text-decoration: none; color: #3300ff;">Notification</a>
+        </div>
+    </div>
+</div>
+
+<div class="container  my-4">
+        
+
+    <!--  CONTACT LIST -->
+    <section class="contacts-library">
+        <ul class="contacts-list">
+            
+            <a href="tel:+228{{ profile.phone_number }}">
+                <div class="contact-section">
+                    <li class="list__item">
+                      <p class="contact-name">{{ profile.phone_number }}</p>
+                       <p class="relationship">Appeler</p>
+                        
+                    </li>
+
+                    <li class="list__item">
+                        <i class="fas fa-phone"></i>
+                    </li>
+                </div>
+            </a>
+
+            <hr>
+
+           
+        </ul>
+    </section>
+    <!--  CONTACT LIST -->
+    <section class="contacts-library">
+        <ul class="contacts-list">
+            
+            <a href="">
+                <div class="contact-section">
+                    <li class="list__item">
+                        <p class="contact-name">{{ profile.phone_number }}</p>
+                        <p class="relationship">Whatsapp</p>
+                        
+                    </li>
+
+                    <li class="list__item">
+                        <i class="fas fa-facebook text"></i>
+                    </li>
+                </div>
+            </a>
+
+            <hr>
+
+           
+        </ul>
+    </section>
+    <!--  CONTACT LIST -->
+    <section class="contacts-library">
+        <ul class="contacts-list">
+            
+            <a href="mailto:contact@example.com">
+                <div class="contact-section">
+                    <li class="list__item">
+                      <p class="contact-name">Envoyer un mesage</p>
+                        <p class="relationship">sms</p>
+                        
+                      
+                    </li>
+
+                    <li class="list__item">
+                        <i class="fas fa-sms text"></i>
+                    </li>
+                </div>
+            </a>
+
+            <hr>
+
+           
+        </ul>
+    </section>
+    <!--  CONTACT LIST -->
+    <section class="contacts-library">
+        <ul class="contacts-list">
+            
+            <a href="mailto:{{ profile.user.email }}">
+                <div class="contact-section">
+                    <li class="list__item">
+                      <p class="contact-name">{{ profile.user.email }}</p>
+                       <p class="relationship">Email</p>
+                        
+                       
+                    </li>
+
+                    <li class="list__item">
+                        <i class="fas fa-envelope text"></i>
+                    </li>
+                </div>
+            </a>
+
+            <hr>
+
+           
+        </ul>
+    </section>
+     <!--  CONTACT LIST -->
+    <section class="contacts-library">
+        <ul class="contacts-list">
+            
+            <a href="">
+                <div class="contact-section">
+                    <li class="list__item">
+                       <p class="contact-name">{{ profile.address }}</p>
+                        <p class="relationship">Adress</p>
+                       
+                      
+                    </li>
+
+                    <li class="list__item">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </li>
+                </div>
+            </a>
+
+            <hr>
+
+           
+        </ul>
+    </section>
+</div>
+
+
+<footer class="my-5 pt-5 text-muted text-center text-small">
+    <p class="mb-1">&copy; 2023 Coin d'ouvriers</p>
+    <ul class="list-inline">
+        <li class="list-inline-item"><a href="#">Confidentialité</a></li>
+        <li class="list-inline-item"><a href="#">Utilisation</a></li>
+        <li class="list-inline-item"><a href="#">A propos</a></li>
+    </ul>
+</footer>
+
+<script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+<script src="{% static 'assets/form-validation.js' %}"></script>
+</body>
+</html>
+
+
+
+

@@ -1,0 +1,19 @@
+<form method="POST">
+  {% csrf_token %} {% for ouvrier in ouvriers_list %}
+  <label>
+    <input
+      type="checkbox"
+      name="selected_ids"
+      value="{{ ouvrier.id|default_if_none:'' }}"
+    />
+    {{ ouvrier.nom }}
+  </label>
+  <input
+    type="number"
+    name="valeur"
+    value="{{ ouvrier.valeur|default_if_none:'' }}"
+  />
+  <br />
+  {% endfor %}
+  <button type="submit">Enregistrer</button>
+</form>

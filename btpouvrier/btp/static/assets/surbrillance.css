@@ -1,0 +1,33 @@
+a {
+  color: #3300ff !important;
+  text-decoration: none !important;
+  position: relative;
+  transition: color 0.3s ease-in-out !important;
+}
+
+a::after {
+  content: "" !important;
+  position: absolute !important;
+  bottom: -2px !important;
+  left: 0;
+  width: 100% !important;
+  height: 2px !important;
+  background-color: transparent !important;
+  transition: background-color 0.3s ease-in-out !important;
+}
+
+a:hover {
+  color: #ff0066 !important;
+}
+
+a:hover::after {
+  background-color: #ff0066 !important;
+}
+
+a.clicked {
+  color: #ffae00 !important ;
+}
+
+a.clicked::after {
+  background-color: #00cc66 !important;
+}
